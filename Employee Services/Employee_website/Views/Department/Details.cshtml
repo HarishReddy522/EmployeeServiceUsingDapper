@@ -1,0 +1,81 @@
+﻿@model EmployeeModels.Department
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Department</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.D_Id)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.D_Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DLOcation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DLOcation)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.D_Id }) |
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<div>
+    <h2>Employees in @Model.DName</div></h2>
+
+@if (Model.employees.Count() > 0 && Model.employees[0]!=null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayName("Name")
+                </th>
+                <th>
+                    @Html.DisplayName("Phone Number")
+                </th>
+                <th>
+                    @Html.DisplayName("Salary")
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.employees)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PhoneNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.salary)
+                    </td>
+                    
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+<h2 style="color:red">No Employees in  @Model.DName department</h2>
+}
+</div>

@@ -1,0 +1,49 @@
+﻿@model IEnumerable<EmployeeModels.Department>
+
+@{
+    ViewData["Title"] = "List Of Departments";
+}
+
+
+@*<h2>List Of Departments</h2*@
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.D_Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DLOcation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.D_Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DLOcation)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.D_Id }) |
+                    @Html.ActionLink("Details", "Details", new { D_id = item.D_Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.D_Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

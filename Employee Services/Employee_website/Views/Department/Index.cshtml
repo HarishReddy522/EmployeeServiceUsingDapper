@@ -1,0 +1,43 @@
+﻿@model IEnumerable<EmployeeModels.Department>
+
+@{
+    ViewData["Title"] = "List Of Departments";
+}
+
+<h2>List Of Departments</h2>
+
+<div class="row" style="margin-top:10px">
+    <label class="col-md-1">Search</label>
+    <input class="col-md-3" id="searchtxt" style="border-radius:2px" />
+    @*<input type="text" id="searchtxt" class="col-md-6" />*@
+</div>
+<div id="emplst" style="margin-top:10px">
+    @Html.Partial("_DepartmentList", Model)
+</div>
+@section Scripts
+{
+  <script>
+      //data: {
+      //    'foo': 'bar',
+      //        'ca$libri': 'no$libri' // <-- the $ sign in the parameter name seems unusual, I would avoid it
+      //},
+      $(document).ready(function () {
+         
+
+          $("#searchtxt").keyup(function () {
+              var txt = $("#searchtxt").val();
+              $.ajax({
+                  url: "Department/Search",
+                  type:"Post",
+                  data: {'search':txt},
+                  success: function (result) {
+                      $("#emplst").html(result);
+                  }
+              }); 
+
+          })
+  });
+</script>
+    
+    
+    }
